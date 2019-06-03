@@ -4,7 +4,7 @@ require('./config/config');
 
 const app = express();
 
-app.use( require('./routes/user') );
+app.use( require('./routes/user.js') );
 
 const bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
