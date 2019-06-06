@@ -12,6 +12,16 @@ process.env.PORT = process.env.PORT || 3000;
 //=================
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev' 
 
+//=================
+// Token expiration
+//=================
+// 60 SECS * 60 mins * 24 hours * 30 dias
+process.env.TOKEN_EXPIRATION = 60*60*24*30
+
+//=================
+// token SEED
+//=================
+process.env.TOKEN_SEED = process.env.TOKEN_SEED || 'development-secret-seed'
 
 //================
 // DATABASE
@@ -19,10 +29,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 let urlDB;
 
-// if (process.env.NODE_ENV === 'dev'){
-//     urlDB = 'mongodb://localhost:27017/cafe';
-// } else {
-     urlDB = process.env.mongoURI;
-// }
+if (process.env.NODE_ENV === 'dev'){
+    urlDB = 'mongodb://localhost:27017/cafe';
+} else {
+     urlDB = process.env.mongoURI; // Set up in heroku
+}
 
 process.env.URLDB = urlDB;

@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('./config/config');
-
 const app = express();
 
-app.use( require('./routes/user.js') );
+
+//Global routes configconfig
+app.use( require('./routes/index') );
+
 
 
 

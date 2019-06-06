@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 const User = require('../models/user');
+
+const { verifyToken, verifyAdminRole } = require('../middlewares/auth.js')
+
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
@@ -15,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/user', function (req, res) {
+app.get('/user', verifyToken ,function (req, res) {
     // res.json('get User');
 
     let fromreq = req.query.from || 0;
@@ -46,7 +49,7 @@ app.get('/user', function (req, res) {
         })
 });
 
-app.post('/user', (req, res) => {
+app.post('/user', [verifyToken, verifyAdminRole], function(req, res) {
     let body = req.body;
 
     let user = new User({
@@ -72,7 +75,7 @@ app.post('/user', (req, res) => {
 
 });
 
-app.put('/user/:id', (req, res) => {
+app.put('/user/:id', [verifyToken, verifyAdminRole], function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body,['name','email','role','status']);
@@ -96,7 +99,7 @@ app.put('/user/:id', (req, res) => {
 });
 
 
-app.delete('/user/:id', (req, res) => {
+app.delete('/user/:id', [verifyToken, verifyAdminRole], function(req, res) {
     // res.json('delete User');
 
     let id = req.params.id;
