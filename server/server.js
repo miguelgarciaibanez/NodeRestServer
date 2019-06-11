@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 require('./config/config');
 const app = express();
 
@@ -7,8 +8,10 @@ const app = express();
 //Global routes configconfig
 app.use( require('./routes/index') );
 
-
-
+//Enable public
+app.use(express.static(path.resolve(__dirname,'../public')));
+//console.log(__dirname + '../public');
+//console.log(path.resolve(__dirname,'../public'));
 
 mongoose.connect(process.env.URLDB,
                  {useNewUrlParser: true, useCreateIndex:true},
