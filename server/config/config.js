@@ -16,7 +16,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 // Token expiration
 //=================
 // 60 SECS * 60 mins * 24 hours * 30 dias
-process.env.TOKEN_EXPIRATION = 60*60*24*30
+process.env.TOKEN_EXPIRATION = '48h'
 
 //=================
 // token SEED
