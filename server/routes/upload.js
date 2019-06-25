@@ -63,7 +63,7 @@ app.put('/upload/:type/:id', function(req,res){
             });
         }
         // Image already loaded
-        type == 'user' ? userImage(id,res,fileNameModified) : productImage(id, res, fileNameModified);
+        type == 'users' ? userImage(id,res,fileNameModified) : productImage(id, res, fileNameModified);
     })
 
 });
